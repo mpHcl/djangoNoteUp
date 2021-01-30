@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head >
+        <meta charset="utf-8">
+        <title>Notes {{ user.username }}</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'Note/style.css' %}">
+    </head>
+    <body style="margin: 0px;">
+        <div>
+            <div id="user_logout" style="text-align: right; border: solid 1px gray; margin-bottom: 3%; background-color: rgb(78, 78, 78);">
+                <h3 style="color: black;">
+                    Welcome {{user.username}} /
+                    <a href="{% url 'Note:logout' %}" style="margin-right:20px">
+                        Log out
+                    </a>
+                </h3>
+            </div>
+            <div id="categories">
+                <table style="float: left; border: gray 1px solid; margin-left: 7%; ">
+                    <thead style="font-size: 20pt; background-color: rgb(88, 88, 88); padding: 1%;" >
+                        <tr>
+                            <th width=180px>Categories</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for category in categories %}
+                            <tr>
+                                <td class="cat_item"><a  style="margin-left: 20px;" href="{% url 'Note:category' category %}"> {{ category }} </a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div style="float: left; margin-left: 10%;">
+                <table style="margin: auto; font-family: 'Courier New', Courier, monospace; border: 1px solid gray; ">
+                    <thead style="font-size: 20pt; background-color: rgb(88, 88, 88); color: black;">
+                        <tr>
+                            <th width="250px">Title</th>
+                            <th width="180px">Category</th>
+                            <th width="250px" >Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for note in notes%}
+                        <tr>
+                            <td><a href="{% url 'Note:details' note.id %}">{{ note.title }}</a></td>
+                            <td><a href="{% url 'Note:category' note.category %}">{{ note.category }}</a></td>
+                            <td style="color: gray;">{{ note.modification_date }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div style=" float: left; margin-left: 10%; padding-left: 2%; padding-right: 2%; background-color: rgb(85, 85, 85);  border: 1px solid gray;">
+                <a href="{% url 'Note:new_note' %}" style="color: black; font-family: 'Courier New', Courier, monospace; font-size: 20pt; text-decoration: none; font-weight: bold;">
+                    New note
+                </a>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ note.title }}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Note/style.css' %}">
+</head>
+<body>
+    <div id="user_logout">
+            <h3>Welcome {{user.username}} / <a href="{% url 'Note:logout' %}">Log out</a></h3>
+    </div>
+
+
+    <h1>{{ note.title }}</h1>
+    <h4>{{ note.modification_date }}</h4>
+    <h5><a href="{% url 'Note:category' note.category %}">{{ note.category }}</a></h5>
+    <p>{{ note.text }}</p>
+    <a href="{% url 'Note:index' %}">Back</a>
+</body>
+</html>

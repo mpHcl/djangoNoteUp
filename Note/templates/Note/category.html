@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{category}}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Note/style.css' %}">
+</head>
+<body>
+    <div id="user_logout">
+            <h3>Welcome {{user.username}} / <a href="{% url 'Note:logout' %}">Log out</a></h3>
+    </div>
+    <table style="margin: auto; border: 1px solid gray;">
+        <thead>
+            <tr>
+                <td>Notes</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for note in notes %}
+            <tr>
+                <td>
+                    <a href="{% url 'Note:details' note.id%}">{{note}}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'Note:index' %}">Back</a>
+</body>
+</html>

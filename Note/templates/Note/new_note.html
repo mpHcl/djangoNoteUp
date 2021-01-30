@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head >
+        <meta charset="utf-8">
+        <title>Notes {{ user.username }}</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'Note/style.css' %}">
+    </head>
+    <body style="margin: 0px;">
+        <div id="user_logout" style="border: solid 1px gray; margin-bottom: 3%; background-color: rgb(78, 78, 78);">
+            <h3 style="color: black;">
+                Welcome {{user.username}} /
+                <a href="{% url 'Note:logout' %}" style="margin-right:20px">
+                    Log out
+                </a>
+            </h3>
+        </div>
+        <div>
+            <form action="{% url 'Note:post_note' %}" method="post" id="post_form">
+                {% csrf_token %}
+                <label> Title: </label>
+                <input name="title" type="text">
+                <input type="submit" value="Post">
+                <br>
+                <label> Category: </label>
+                <input name="category" type="text">
+            </form>
+            <textarea form="post_form" rows="5" cols="100" name="text">Enter note here...</textarea>
+        </div>
+
+    </body>
+</html>
