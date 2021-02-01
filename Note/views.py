@@ -10,8 +10,8 @@ from django.http import Http404
 # Create your views here.
 def index(request):
     if request.user.is_authenticated:
-        notes = Note.objects.filter(user=request.user)
-        categories_list = notes.values_list('category', flat=True).distinct()
+        notes = Note.objects.filter(user=request.user).order_by('-modification_date')
+        categories_list = notes.values_list('category', flat=True).distinct().order_by()
         return render(request, 'Note/index.html', context={
             'user': request.user, 'notes': notes, 'categories': categories_list
         })

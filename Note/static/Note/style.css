@@ -1,16 +1,24 @@
 body {
     background-color: rgb(37, 37, 37);
     font-family: 'Courier New', Courier, monospace; color:gray;
+    margin: 0px;
 }
 a {
     color: rgba(255, 0, 255, 0.603);
 }
 
 #user_logout {
-    float: right;
     text-align: right;
     border: solid 1px gray;
     margin-bottom: 3%; background-color: rgb(78, 78, 78);
+}
+
+#user_logout h3{
+    color: black;
+}
+
+#user_logout a {
+    margin-right: 20px;
 }
 
 #categories {
@@ -30,4 +38,22 @@ h1 {
     margin-left: 10px;
     font-family: 'Courier New', Courier, monospace;
     font-size: 14pt;
+}
+
+#new_note_button {
+    float: left;
+    margin-left: 10%;
+    padding-left: 2%;
+    padding-right: 2%;
+    background-color:
+    rgb(85, 85, 85);
+    border: 1px solid gray;
+}
+
+#new_note_button a {
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20pt;
+    text-decoration: none;
+    font-weight: bold;
 }

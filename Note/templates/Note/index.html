@@ -6,12 +6,12 @@
         {% load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'Note/style.css' %}">
     </head>
-    <body style="margin: 0px;">
+    <body>
         <div>
-            <div id="user_logout" style="text-align: right; border: solid 1px gray; margin-bottom: 3%; background-color: rgb(78, 78, 78);">
-                <h3 style="color: black;">
+            <div id="user_logout">
+                <h3>
                     Welcome {{user.username}} /
-                    <a href="{% url 'Note:logout' %}" style="margin-right:20px">
+                    <a href="{% url 'Note:logout' %}" style="">
                         Log out
                     </a>
                 </h3>
@@ -52,8 +52,8 @@
                     </tbody>
                 </table>
             </div>
-            <div style=" float: left; margin-left: 10%; padding-left: 2%; padding-right: 2%; background-color: rgb(85, 85, 85);  border: 1px solid gray;">
-                <a href="{% url 'Note:new_note' %}" style="color: black; font-family: 'Courier New', Courier, monospace; font-size: 20pt; text-decoration: none; font-weight: bold;">
+            <div id="new_note_button">
+                <a href="{% url 'Note:new_note' %}">
                     New note
                 </a>
             </div>
