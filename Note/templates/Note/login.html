@@ -3,22 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Login page</title>
+    <style>
+        #form_div {
+            margin: 40%;
+            margin-top: 10%;
+            width: 20%;
+        }
+
+        input {
+            float: right;
+            margin-left: 4%;
+            border: solid 1px gray;
+            margin-bottom: 1%;
+            background-color: rgb(78, 78, 78);
+            font-size: 14pt;
+        }
+
+    </style>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'Note/style.css' %}">
 </head>
 <body>
-    <form action="login_validate" method="post">
-        {%csrf_token%}
-        <label>Username</label>
-        <input name="username" type="text">
-        <br><br>
-        <label>Password</label>
-        <input name="password" type="password">
-        <br><br>
-        <input type="submit">
-        {% if message %}
-        <h1> {{ message }}</h1>
-        {% endif %}
-    </form>
+    <div id="form_div">
+        <h2>Log in</h2>
+        <form action="login_validate" method="post">
+            {%csrf_token%}
+            <label>Username</label>
+            <input name="username" type="text">
+            <br><br>
+            <label>Password</label>
+            <input name="password" type="password">
+            <br><br><a href="{% url 'Note:register_page' %}">Register account</a>
+            <input type="submit" value="Log in">
+            {% if message %}
+            <h1> {{ message }}</h1>
+            {% endif %}
+        </form>
+    </div>
+
 </body>
 </html>

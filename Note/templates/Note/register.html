@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <style>
+        #form_div {
+            margin: 40%;
+            margin-top: 10%;
+            width: 20%;
+        }
+
+        input {
+            float: right;
+            margin-left: 4%;
+            border: solid 1px gray;
+            margin-bottom: 1%;
+            background-color: rgb(78, 78, 78);
+            font-size: 14pt;
+        }
+
+
+    </style>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Note/style.css' %}">
+</head>
+<body>
+    <div id="form_div">
+        <h1>Register: </h1>
+        <form action="{% url 'Note:register_account' %}" method="post">
+            {% csrf_token %}
+            <label>Frist name: </label>
+            <input type="text" name="first_name">
+            <br><br>
+            <label>Last name: </label>
+            <input type="text" name="last_name">
+            <br><br>
+            <label>Username: </label>
+            <input type="text" name="username">
+            <br><br>
+            {% if email_message %}
+            <h2>Invalid emial</h2>
+            {% endif %}
+            <label>E-mail: </label>
+            <input type="text" name="email">
+            <br><br>
+            <label>Password: </label>
+            <input type="password" name="password">
+            <br><br>
+            <input type="submit" value="Register" style="margin-right: 40%;">
+        </form>
+            {% if message %}
+            <h2>Missing information</h2>
+            {% endif %}
+    </div>
+</body>
+</html>

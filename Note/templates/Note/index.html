@@ -52,10 +52,20 @@
                     </tbody>
                 </table>
             </div>
-            <div id="new_note_button">
-                <a href="{% url 'Note:new_note' %}">
-                    New note
-                </a>
+            <div id="search_and_new_button">
+                <div id="new_note_button">
+                    <a href="{% url 'Note:new_note' %}">
+                        New note
+                    </a>
+                </div>
+                <br>
+                <div id="search_note" style="">
+                    <form action="{% url 'Note:search_note' %}" method="post">
+                        {%csrf_token%}
+                        <input type="search" placeholder="Search" name="value" style="float: left;">
+                        <input type="submit" value="Search" style="float: left;">
+                    </form>
+                </div>
             </div>
         </div>
     </body>

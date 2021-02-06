@@ -10,7 +10,8 @@ a {
 #user_logout {
     text-align: right;
     border: solid 1px gray;
-    margin-bottom: 3%; background-color: rgb(78, 78, 78);
+    margin-bottom: 3%;
+    background-color: rgb(78, 78, 78);
 }
 
 #user_logout h3{
@@ -40,11 +41,15 @@ h1 {
     font-size: 14pt;
 }
 
-#new_note_button {
-    float: left;
-    margin-left: 10%;
+#search_and_new_button {
+    margin-left: 8%;
     padding-left: 2%;
     padding-right: 2%;
+    float: left;
+    text-align: center;
+}
+
+#new_note_button {
     background-color:
     rgb(85, 85, 85);
     border: 1px solid gray;
@@ -56,4 +61,30 @@ h1 {
     font-size: 20pt;
     text-decoration: none;
     font-weight: bold;
+}
+
+#search_note input {
+    background-color:
+    rgb(85, 85, 85);
+    border: 1px solid gray;
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15pt;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#form_div {
+    margin: 40%;
+    margin-top: 10%;
+    width: 20%;
+}
+
+#form_div input {
+     float: right;
+     margin-left: 4%;
+     border: solid 1px gray;
+     margin-bottom: 1%;
+     background-color: rgb(78, 78, 78);
+     font-size: 14pt;
 }

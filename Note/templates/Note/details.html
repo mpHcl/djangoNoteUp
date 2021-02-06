@@ -11,11 +11,18 @@
             <h3>Welcome {{user.username}} / <a href="{% url 'Note:logout' %}">Log out</a></h3>
     </div>
 
+    <div style="margin: 10%; margin-top: 1%;">
+        <div >
+            <h1>{{ note.title }}<a href="{% url 'Note:edit_page' note.id %}" style="float: right;">Edit</a></h1>
 
-    <h1>{{ note.title }}</h1>
-    <h4>{{ note.modification_date }}</h4>
-    <h5><a href="{% url 'Note:category' note.category %}">{{ note.category }}</a></h5>
-    <p>{{ note.text }}</p>
-    <a href="{% url 'Note:index' %}">Back</a>
+        </div>
+        <br>
+        <h4>{{ note.modification_date }}</h4>
+        <h5><a href="{% url 'Note:category' note.category %}">{{ note.category }}</a></h5>
+        <p>{{ note.text }}</p>
+        <br><br>
+        <a href="{% url 'Note:index' %}" style="text-decoration: none;">⮪ Back</a>
+    </div>
+
 </body>
 </html>

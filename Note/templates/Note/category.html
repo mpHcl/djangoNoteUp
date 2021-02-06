@@ -10,22 +10,25 @@
     <div id="user_logout">
             <h3>Welcome {{user.username}} / <a href="{% url 'Note:logout' %}">Log out</a></h3>
     </div>
-    <table style="margin: auto; border: 1px solid gray;">
-        <thead>
-            <tr>
-                <td>Notes</td>
+    <table style="margin: auto; border: 1px solid gray; width: 25%;">
+        <thead style="margin: auto; font-family: 'Courier New', Courier, monospace; border: 1px solid gray;">
+            <tr style="font-size: 20pt; background-color: rgb(88, 88, 88); color: black;">
+                <td style="text-align: center;">Notes</td>
             </tr>
         </thead>
         <tbody>
             {% for note in notes %}
             <tr>
-                <td>
-                    <a href="{% url 'Note:details' note.id%}">{{note}}</a>
+                <td style="height: 30px;">
+                    <a href="{% url 'Note:details' note.id%}" style="margin-left: 20px;">{{note}}</a>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <a href="{% url 'Note:index' %}">Back</a>
+    <div style="margin: auto; text-align: center; font-size: 15pt;">
+         <a href="{% url 'Note:index' %}" style="text-decoration: none;"> ⮪ Back</a>
+    </div>
+
 </body>
 </html>

@@ -15,18 +15,80 @@
                 </a>
             </h3>
         </div>
-        <div>
+        <div style="margin-left: 20%; width: 60%; font-size: 18pt;">
+            {% if note %}
+                <form action="{% url 'Note:edit_note' %}" method="post" id="post_form">
+                {% csrf_token %}
+                <label> Title: </label>
+                <input name="id" value="{{ note.id}}" style="visibility: hidden;">
+                <input name="title" type="text" required="True" style="margin-left: 4%;
+                                                                       border: solid 1px gray;
+                                                                       margin-bottom: 1%;
+                                                                       background-color: rgb(78, 78, 78);
+                                                                       font-size: 18pt;" value="{{ note.title }}">
+                <input type="submit" value="Post" style="float: right;
+                                                        background-color:
+                                                        rgb(85, 85, 85);
+                                                        border: 1px solid gray;
+                                                        color: black;
+                                                        font-family: 'Courier New', Courier, monospace;
+                                                        font-size: 15pt;
+                                                        text-decoration: none;
+                                                        font-weight: bold;
+                                                        font-size: 25pt;">
+                <br><br>
+                <label> Category: </label>
+                <input name="category" type="text" required="True" style="margin-left: 2px;
+                                                                          border: solid 1px gray;
+                                                                          margin-bottom: 3%;
+                                                                          background-color: rgb(78, 78, 78);
+                                                                          font-size: 18pt;" value="{{ note.category }}">
+                <br>
+            </form>
+            <textarea form="post_form" rows="20" cols="100" name="text" style="width: 100%;
+                                                          border: solid 1px gray;
+                                                          margin-bottom: 3%;
+                                                          background-color: rgb(78, 78, 78);
+                                                          font-size: 18pt">{{ note.text }}
+            </textarea>
+            {% else %}
             <form action="{% url 'Note:post_note' %}" method="post" id="post_form">
                 {% csrf_token %}
                 <label> Title: </label>
-                <input name="title" type="text">
-                <input type="submit" value="Post">
-                <br>
+                <input name="title" type="text" required="True" style="margin-left: 4%;
+                                                                       border: solid 1px gray;
+                                                                       margin-bottom: 1%;
+                                                                       background-color: rgb(78, 78, 78);
+                                                                       font-size: 18pt;">
+                <input type="submit" value="Post" style="float: right;
+                                                        background-color:
+                                                        rgb(85, 85, 85);
+                                                        border: 1px solid gray;
+                                                        color: black;
+                                                        font-family: 'Courier New', Courier, monospace;
+                                                        font-size: 15pt;
+                                                        text-decoration: none;
+                                                        font-weight: bold;
+                                                        font-size: 25pt;">
+                <br><br>
                 <label> Category: </label>
-                <input name="category" type="text">
+                <input name="category" type="text" required="True" style="margin-left: 2px;
+                                                                          border: solid 1px gray;
+                                                                          margin-bottom: 3%;
+                                                                          background-color: rgb(78, 78, 78);
+                                                                          font-size: 18pt;">
+                <br>
             </form>
-            <textarea form="post_form" rows="5" cols="100" name="text">Enter note here...</textarea>
+            <textarea form="post_form" rows="20" cols="100" name="text" style="width: 100%;
+                                                          border: solid 1px gray;
+                                                          margin-bottom: 3%;
+                                                          background-color: rgb(78, 78, 78);
+                                                          font-size: 18pt">Enter note here...
+            </textarea>
+            {% endif %}
+            <div style="margin: auto; text-align: center; font-size: 15pt;">
+                <a href="{% url 'Note:index' %}" style="text-decoration: none;"> ⮪ Home</a>
+            </div>
         </div>
-
     </body>
 </html>
