@@ -12,3 +12,11 @@ class Note(models.Model):
 
     def __str__(self):
         return str(self.title) + ' (' + str(self.category) + ')'
+
+
+class File(models.Model):
+    note = models.ForeignKey(Note, on_delete=models.CASCADE)
+    file = models.FileField(upload_to="note_files")
+
+    def __str__(self):
+        return str("file_" + str(self.id))

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Note
+from .models import Note, File
 
 
 # Register your models here.
@@ -8,3 +8,4 @@ class NoteAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Note, NoteAdmin)
+admin.site.register(File)

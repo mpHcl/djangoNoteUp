@@ -1,14 +1,16 @@
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-from .models import Note
+from .functions import handle_file
+from .models import Note, File
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, logout, login
-from django.http import Http404
-from Note.email_check import check
+from django.http import Http404, HttpResponse, FileResponse
+from .functions import check
+
+from NoteUp.settings import MEDIA_ROOT
 
 
-# Create your views here.
 def index(request):
     if request.user.is_authenticated:
         notes = Note.objects.filter(user=request.user).order_by('-modification_date')
@@ -35,7 +37,8 @@ def details(request, note_id):
     if request.user.is_authenticated:
         note = Note.objects.filter(pk=note_id, user=request.user)
         if note:
-            return render(request, 'Note/details.html', context={'note': note[0]})
+            files = File.objects.filter(note=note[0])
+            return render(request, 'Note/details.html', context={'note': note[0], 'files': files})
         else:
             raise Http404('Page not found')
     else:
@@ -93,7 +96,7 @@ def register_account(request):
 
 
 def post_note(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated and request.method == 'POST':
         user = User.objects.get(pk=request.user.id)
         title = request.POST['title']
         text = request.POST['text']
@@ -102,6 +105,10 @@ def post_note(request):
 
         if title and text and category:
             note = Note.objects.create(user=user, title=title, text=text, category=category, modification_date=mod_date)
+
+            if request.FILES:
+                handle_file(file=request.FILES['myfile'], note=note)
+
             return redirect('Note:details', note_id=note.id)
         else:
             return redirect('Note:new_note')
@@ -125,6 +132,10 @@ def edit_note(request):
             note.modification_date = mod_date
             note.text = text
             note.save()
+
+            if request.FILES:
+                handle_file(file=request.FILES['myfile'], note=note)
+
             return redirect('Note:details', note_id=note.id)
         else:
             return redirect('Note:new_note')
@@ -154,3 +165,13 @@ def search_note(request):
         })
     else:
         return redirect('Note:login_page')
+
+
+def download_file(reqeust, path, file):
+    if reqeust.user.is_authenticated:
+        notes = Note.objects.filter(user=reqeust.user)
+        for note in notes:
+            if File.objects.filter(note=note, file=path+"/"+file):
+                return FileResponse(open(MEDIA_ROOT + "\\" + path + "\\" + file, 'rb'))
+
+    return redirect('Note:login_page')

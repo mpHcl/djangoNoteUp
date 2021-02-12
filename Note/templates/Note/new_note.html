@@ -17,11 +17,11 @@
         </div>
         <div style="margin-left: 20%; width: 60%; font-size: 18pt;">
             {% if note %}
-                <form action="{% url 'Note:edit_note' %}" method="post" id="post_form">
+                <form action="{% url 'Note:edit_note' %}" method="post" id="post_form" enctype="multipart/form-data">
                 {% csrf_token %}
                 <label> Title: </label>
-                <input name="id" value="{{ note.id}}" style="visibility: hidden;">
-                <input name="title" type="text" required="True" style="margin-left: 4%;
+                <input name="id" value="{{ note.id}}" style="visibility: hidden; width:0;" >
+                <input name="title" type="text" required="True" style="margin-left: 2%;
                                                                        border: solid 1px gray;
                                                                        margin-bottom: 1%;
                                                                        background-color: rgb(78, 78, 78);
@@ -36,14 +36,17 @@
                                                         text-decoration: none;
                                                         font-weight: bold;
                                                         font-size: 25pt;">
-                <br><br>
+                <br>
                 <label> Category: </label>
+
                 <input name="category" type="text" required="True" style="margin-left: 2px;
                                                                           border: solid 1px gray;
                                                                           margin-bottom: 3%;
                                                                           background-color: rgb(78, 78, 78);
                                                                           font-size: 18pt;" value="{{ note.category }}">
                 <br>
+                <input type="file"  name="myfile" multiple>
+                <br><br>
             </form>
             <textarea form="post_form" rows="20" cols="100" name="text" style="width: 100%;
                                                           border: solid 1px gray;
@@ -52,7 +55,7 @@
                                                           font-size: 18pt">{{ note.text }}
             </textarea>
             {% else %}
-            <form action="{% url 'Note:post_note' %}" method="post" id="post_form">
+            <form action="{% url 'Note:post_note' %}" method="post" id="post_form" enctype="multipart/form-data">
                 {% csrf_token %}
                 <label> Title: </label>
                 <input name="title" type="text" required="True" style="margin-left: 4%;
@@ -70,6 +73,7 @@
                                                         text-decoration: none;
                                                         font-weight: bold;
                                                         font-size: 25pt;">
+
                 <br><br>
                 <label> Category: </label>
                 <input name="category" type="text" required="True" style="margin-left: 2px;
@@ -78,6 +82,8 @@
                                                                           background-color: rgb(78, 78, 78);
                                                                           font-size: 18pt;">
                 <br>
+                <input type="file" name="myfile"  multiple>
+                <br><br>
             </form>
             <textarea form="post_form" rows="20" cols="100" name="text" style="width: 100%;
                                                           border: solid 1px gray;

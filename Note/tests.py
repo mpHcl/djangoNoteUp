@@ -3,7 +3,6 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 
-# Create your tests here.
 from Note.models import Note
 
 
@@ -100,3 +99,37 @@ class CategoriesTest(TestCase):
         response = self.client.get('/note/category/not_django')
 
         self.assertEqual(response.status_code, 404)
+
+
+class LogoutViewTest(TestCase):
+    def test_logout_view_logged(self):
+        create_user('jan', 'pass')
+
+        self.client.login(username='jan', password='pass')
+        response = self.client.get('/note/logout')
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "You've been logged out")
+
+    def test_logout_view_not_logged(self):
+        response = self.client.get('/note/logout')
+
+        self.assertEqual(response.status_code, 404)
+
+
+class LoginViewTest(TestCase):
+    def test_login_view(self):
+        response = self.client.get('/note/login')
+        self.assertContains(response, "Username")
+        self.assertContains(response, "Password")
+        self.assertContains(response, "Register account")
+
+
+class RegisterViewTest(TestCase):
+    def test_register_view(self):
+        response = self.client.get('/note/register')
+        self.assertContains(response, 'Frist name:')
+        self.assertContains(response, 'Last name:')
+        self.assertContains(response, 'Username:')
+        self.assertContains(response, 'E-mail:')
+        self.assertContains(response, 'Password:')

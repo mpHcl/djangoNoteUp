@@ -20,9 +20,15 @@
         <h4>{{ note.modification_date }}</h4>
         <h5><a href="{% url 'Note:category' note.category %}">{{ note.category }}</a></h5>
         <p>{{ note.text }}</p>
+        <br>
+        {% for file in files %}
+            <a href="/note/download{{ file.file.url }}" target="_blank" style="margin-left: 10px; font-size:10pt;"> {{ file }} </a> <br>
+        {% endfor %}
         <br><br>
         <a href="{% url 'Note:index' %}" style="text-decoration: none;">⮪ Back</a>
     </div>
+
+
 
 </body>
 </html>
