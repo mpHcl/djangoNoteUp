@@ -22,13 +22,10 @@
         <p>{{ note.text }}</p>
         <br>
         {% for file in files %}
-            <a href="/note/download{{ file.file.url }}" target="_blank" style="margin-left: 10px; font-size:10pt;"> {{ file }} </a> <br>
+            <a href="/note/open{{ file.file.url }}" target="_blank" style="margin-left: 10px; font-size:10pt;"> {{ file }} </a> <br>
         {% endfor %}
         <br><br>
         <a href="{% url 'Note:index' %}" style="text-decoration: none;">⮪ Back</a>
     </div>
-
-
-
 </body>
 </html>

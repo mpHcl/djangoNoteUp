@@ -16,5 +16,5 @@ urlpatterns = [
     path("edit_note", views.edit_note, name='edit_note'),
     path("register", views.register_view, name='register_page'),
     path("register_account", views.register_account, name='register_account'),
-    path("download/<path>/<file>", views.download_file, name='download')
+    path("open/<path>/<file>", views.open_file, name='open')
 ]

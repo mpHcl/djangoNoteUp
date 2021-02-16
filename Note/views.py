@@ -167,7 +167,7 @@ def search_note(request):
         return redirect('Note:login_page')
 
 
-def download_file(reqeust, path, file):
+def open_file(reqeust, path, file):
     if reqeust.user.is_authenticated:
         notes = Note.objects.filter(user=reqeust.user)
         for note in notes:
